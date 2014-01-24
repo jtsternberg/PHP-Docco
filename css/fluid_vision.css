@@ -1,0 +1,143 @@
+pre.code {
+background-color: #F4F4F4;
+color: #000;
+}
+
+.Root{
+color: #000;
+}
+
+.Shebang{
+color: #1A921C;
+font-style: italic;
+}
+
+.BlockComment{
+color: #386F90;
+background-color: #DDEEFE;
+font-style: italic;
+}
+
+.Comment {
+color: #386F90;
+background-color: #DDEEFE;
+}
+
+.Logic {
+color: #ad7fa8;
+/* font-weight: bold; */
+}
+
+.className {
+/*color: #70727E; */
+color: #1B4B9D;
+font-style: italic;
+}
+
+.funcName {
+color: #001D56;
+/* color: #1B4B9D; */
+}
+
+.Keywords {
+color: #5B91E1;
+}
+
+.Keywords2 {
+color: #3C4C72;
+}
+
+.Keywords3 {
+color: #2D5579;
+}
+
+.Keywords4 {
+color: #473E8F;
+}
+
+.Keywords5 {
+color: #DF8A45;
+}
+
+.Special{
+color: #88A32F; 
+}
+
+.Types {
+color: #333366;
+font-style: italic;
+}
+
+.Entities {
+color: #26B31A;
+background-color: #F4F4F4;
+}
+
+.Entities1 {
+color: #26B31A;
+background-color: #F4F4F4;
+}
+
+.Entities2 {
+color: #877611;
+}
+
+.Entities3 {
+color: #646409;
+}
+
+.Pars {
+color: #B90690;
+}
+
+.Operators{
+color: #687687;
+}
+
+.StringEsc {
+color: #D9D762;
+background-color: #4E30BA;
+}
+
+.String, .SingleString {
+color: #840E0B;
+background-color: #F4F4F4;
+}
+
+.DoubleString {
+color: #840E0B;
+background-color: #F4F4F4;
+}
+
+.Number {
+color: #C34F0A;
+}
+
+.Integer {
+color: #C5060B;
+}
+
+.Tag {
+color: #49A5FF; 
+}
+
+.Name {
+color: #49A5FF; 
+}
+
+.Regex {
+color: #29AFDF;
+background-color: #2F1D1D;
+}
+
+.Dico {
+color: #61FF2F;
+background-color: #183F0C;
+}
+
+.Url, .Url a  {
+color: #628795;
+background-color: #FFFFFF;
+text-decoration: underline;
+font-style: italic;
+}

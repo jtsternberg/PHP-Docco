@@ -1,0 +1,415 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <meta http-equiv="content-type" content="text/html;charset=utf-8"> 
+  <title>Pocco</title> 
+  <link rel="stylesheet" href="css/pocco.css">
+  <link rel="stylesheet" href="css/zen.css"> 
+  <link rel="stylesheet" media="all" href="docco.css" />
+
+</head> 
+<body> 
+<div id='container'> 
+  <div id="background"></div> 
+  <table cellspacing=0 cellpadding=0> 
+  <thead> 
+    <tr> 
+      <th class=docs><h1>Pocco</h1></th> 
+      <th class=code></th> 
+    </tr> 
+  </thead> 
+  <tbody>
+<tr id='section-0'> 
+  <td class=docs>
+    
+  </td> 
+  <td class=code> 
+    <div class='highlight'><pre class="code"></pre></div> 
+  </td> 
+</tr><tr id='section-1'> 
+  <td class=docs>
+    <p> Pocco is a PHP port of <a href="http://jashkenas.github.com/docco/">Docco</a>
+ under a The MIT License.
+</p><p>
+ Copyright (C) 2011 Kibleur C.
+</p> <p>
+ Docco is a quick-and-dirty, literate-programming-style 
+ documentation generator. It produces HTML that displays your comments 
+ alongside your code. Comments are passed through <a href="http://www.wikicreole.org/">Creole</a>
+ thanks to a modified version of Ivan Fomichev's <a href="http://goo.gl/HQGkt">Creole 1.0</a> extensible parser,
+ or Michel Fortin's <a href="http://michelf.com/projects/php-markdown/">PHP-Markdown Extra</a> 
+ and the code is passed through the <a href="http://kib2.free.fr/Prism/php/">Prism</a> syntax highlighter.
+</p><p>
+ This page is the result of running 
+ Pocco against its own source file.
+</p><h2>Another Sample</h2><p> You can see the result of running Pocco against the original <tt>docco.coffee</tt> file
+ just <a href="http://kib2.free.fr/Pocco/docco.html">here</a>
+</p><h2>Download</h2><p> You can <a href="http://kib2.free.fr/Pocco/Pocco.zip">Download Pocco</a> here.
+</p><p>
+ In the future, <a href="http://kib2.free.fr/Pocco/Pocco.html">Pocco</a> will support as many languages 
+ its internal highlighter Prism.<br/>
+ At the moment, Pocco only supports PHP.</p>
+  </td> 
+  <td class=code> 
+    <div class='highlight'><pre class="code"></pre></div> 
+  </td> 
+</tr><tr id='section-2'> 
+  <td class=docs>
+    <h1>Let's look at our source code</h1>
+  </td> 
+  <td class=code> 
+    <div class='highlight'><pre class="code"></pre></div> 
+  </td> 
+</tr><tr id='section-3'> 
+  <td class=docs>
+    <p> We need to include Creole, Markdown and Prism modules</p>
+  </td> 
+  <td class=code> 
+    <div class='highlight'><pre class="code"><span class="Keywords">include_once</span><span class="Pars">(</span><span class="SingleString">'libs/creole.php'</span><span class="Pars">);</span>
+<span class="Keywords">include_once</span><span class="Pars">(</span><span class="SingleString">'libs/markdown.php'</span><span class="Pars">);</span>
+<span class="Keywords">include_once</span><span class="Pars">(</span><span class="SingleString">'libs/Prism.php'</span><span class="Pars">);</span></pre></div> 
+  </td> 
+</tr><tr id='section-4'> 
+  <td class=docs>
+    <p> The main class</p>
+  </td> 
+  <td class=code> 
+    <div class='highlight'><pre class="code"><span class="Keywords3">class</span> <span class="className">Pocco</span> <span class="Pars">{</span></pre></div> 
+  </td> 
+</tr><tr id='section-5'> 
+  <td class=docs>
+    <p> Constructor takes a <tt>$filename</tt> as argument</p>
+  </td> 
+  <td class=code> 
+    <div class='highlight'><pre class="code">  <span class="Keywords4">function</span> <span class="funcName">__construct</span><span class="Pars">(</span><span class="Tag">$file_name</span><span class="Pars">,</span> <span class="Tag">$file_extension</span><span class="Pars">,</span> <span class="Tag">$markup_engine</span> <span class="Operators">=</span> <span class="SingleString">'creole'</span><span class="Pars">)
+  {</span>
+    <span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">markup_engine</span> <span class="Operators">=</span> <span class="Tag">$markup_engine</span><span class="Pars">;</span>
+    <span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">filename</span> <span class="Operators">=</span> <span class="Tag">$file_name</span><span class="Pars">;</span>
+    <span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">file_extension</span> <span class="Operators">=</span> <span class="Tag">$file_extension</span><span class="Pars">;</span>
+    <span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">source</span>   <span class="Operators">=</span> <span class="Keywords2">file_get_contents</span><span class="Pars">(</span><span class="Tag">$file_name</span><span class="Operators">.</span><span class="SingleString">'.'</span><span class="Operators">.</span><span class="Tag">$file_extension</span><span class="Pars">);</span></pre></div> 
+  </td> 
+</tr><tr id='section-6'> 
+  <td class=docs>
+    <p> This sets a Prism instance with an HtmlFormatter</p>
+  </td> 
+  <td class=code> 
+    <div class='highlight'><pre class="code">    <span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">form</span>     <span class="Operators">=</span> <span class="Special">new</span> <span class="className">HtmlFormatter</span><span class="Pars">();</span>
+    <span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">hil</span>      <span class="Operators">=</span> <span class="Special">new</span> <span class="className">Prism</span><span class="Pars">(</span><span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">form</span><span class="Pars">,</span> <span class="Tag">$file_extension</span><span class="Pars">);</span></pre></div> 
+  </td> 
+</tr><tr id='section-7'> 
+  <td class=docs>
+    <p> All supported languages are set inside an hash-table</p>
+  </td> 
+  <td class=code> 
+    <div class='highlight'><pre class="code">    <span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">langs</span> <span class="Operators">=</span> <span class="Keywords2">array</span><span class="Pars">(</span>
+      <span class="DoubleString">"php"</span>    <span class="Operators">=&gt;</span>  <span class="Keywords2">array</span><span class="Pars">(</span> <span class="SingleString">'single'</span> <span class="Operators">=&gt;</span> <span class="SingleString">'/^</span><span class="StringEsc">\s</span><span class="SingleString">*</span><span class="StringEsc">\/\/</span><span class="SingleString">/'</span><span class="Pars">,</span>  
+                          <span class="SingleString">'multi'</span> <span class="Operators">=&gt;</span> <span class="Keywords2">array</span><span class="Pars">(</span> <span class="SingleString">'start'</span> <span class="Operators">=&gt;</span> <span class="SingleString">'#/</span><span class="StringEsc">\*</span><span class="SingleString">#'</span><span class="Pars">,</span> <span class="SingleString">'middle'</span> <span class="Operators">=&gt;</span> <span class="SingleString">'#</span><span class="StringEsc">\*</span><span class="SingleString">#'</span><span class="Pars">,</span> <span class="SingleString">'end'</span> <span class="Operators">=&gt;</span> <span class="SingleString">'#</span><span class="StringEsc">\*</span><span class="SingleString">/#'</span><span class="Pars">),</span> 
+      <span class="DoubleString">"coffee"</span> <span class="Operators">=&gt;</span>  <span class="Keywords2">array</span><span class="Pars">(</span> <span class="SingleString">'single'</span> <span class="Operators">=&gt;</span> <span class="SingleString">'/^#/'</span><span class="Pars">),   
+    );</span></pre></div> 
+  </td> 
+</tr><tr id='section-8'> 
+  <td class=docs>
+    <p> Sets the language dictionnary</p>
+  </td> 
+  <td class=code> 
+    <div class='highlight'><pre class="code">    <span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">set_language</span><span class="Pars">();
+  }</span>
+
+  <span class="Keywords4">function</span> <span class="funcName">set_language</span><span class="Pars">()
+  {</span>
+    <span class="Tag">$dico</span> <span class="Operators">=</span> <span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">langs</span><span class="Pars">[</span><span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">file_extension</span><span class="Pars">];</span></pre></div> 
+  </td> 
+</tr><tr id='section-9'> 
+  <td class=docs>
+    <p> It is assumed that each language provides a <tt>single_line_comment</tt>.</p>
+  </td> 
+  <td class=code> 
+    <div class='highlight'><pre class="code">    <span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">single_line_comment</span> <span class="Operators">=</span> <span class="Tag">$dico</span><span class="Pars">[</span><span class="SingleString">'single'</span><span class="Pars">];</span>
+    <span class="Keywords">if</span> <span class="Pars">(</span><span class="Keywords2">array_key_exists</span><span class="Pars">(</span><span class="SingleString">'ignore'</span><span class="Pars">,</span><span class="Tag">$dico</span><span class="Pars">)) {</span>
+      <span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">ignore</span> <span class="Operators">=</span> <span class="Tag">$dico</span><span class="Pars">[</span><span class="SingleString">'ignore'</span><span class="Pars">];
+    }</span></pre></div> 
+  </td> 
+</tr><tr id='section-10'> 
+  <td class=docs>
+    <p> Now, check if <tt>multi</tt> is set</p>
+  </td> 
+  <td class=code> 
+    <div class='highlight'><pre class="code">    <span class="Keywords">if</span> <span class="Pars">(</span><span class="Keywords2">array_key_exists</span><span class="Pars">(</span><span class="SingleString">'multi'</span><span class="Pars">,</span><span class="Tag">$dico</span><span class="Pars">)) {</span>
+      <span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">block_comment_start</span> <span class="Operators">=</span> <span class="Tag">$dico</span><span class="Pars">[</span><span class="SingleString">'multi'</span><span class="Pars">][</span><span class="SingleString">'start'</span><span class="Pars">];</span>
+      <span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">block_comment_mid</span>   <span class="Operators">=</span> <span class="Tag">$dico</span><span class="Pars">[</span><span class="SingleString">'multi'</span><span class="Pars">][</span><span class="SingleString">'middle'</span><span class="Pars">];</span>
+      <span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">block_comment_end</span>   <span class="Operators">=</span> <span class="Tag">$dico</span><span class="Pars">[</span><span class="SingleString">'multi'</span><span class="Pars">][</span><span class="SingleString">'end'</span><span class="Pars">];  
+    }
+  }</span>
+
+  <span class="Keywords4">function</span> <span class="funcName">parse</span><span class="Pars">() {</span>
+    <span class="Tag">$sections</span> <span class="Operators">=</span> <span class="Keywords2">array</span><span class="Pars">();</span>
+    <span class="Tag">$docs</span>     <span class="Operators">=</span> <span class="Keywords2">array</span><span class="Pars">();</span>
+    <span class="Tag">$code</span>     <span class="Operators">=</span> <span class="Keywords2">array</span><span class="Pars">();</span>
+    <span class="Tag">$lines</span>    <span class="Operators">=</span> <span class="Keywords2">explode</span><span class="Pars">(</span><span class="DoubleString">"</span><span class="StringEsc">\n</span><span class="DoubleString">"</span><span class="Pars">,</span> <span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">source</span><span class="Pars">);</span></pre></div> 
+  </td> 
+</tr><tr id='section-11'> 
+  <td class=docs>
+    <p> Skip the first line if it is a shebang.</p>
+  </td> 
+  <td class=code> 
+    <div class='highlight'><pre class="code">    <span class="Keywords">if</span> <span class="Pars">(</span><span class="Keywords2">preg_match</span><span class="Pars">(</span><span class="SingleString">'/^</span><span class="StringEsc">\#\!</span><span class="SingleString">/'</span><span class="Pars">,</span> <span class="Tag">$lines</span><span class="Pars">[</span><span class="Number">0</span><span class="Pars">])) {</span> <span class="Keywords2">array_shift</span><span class="Pars">(</span><span class="Tag">$lines</span><span class="Pars">); }</span>
+    <span class="Tag">$in_comment_block</span> <span class="Operators">=</span> <span class="Logic">false</span><span class="Pars">;</span>
+
+    <span class="Keywords">foreach</span><span class="Pars">(</span><span class="Tag">$lines</span> <span class="Keywords">as</span> <span class="Tag">$line</span><span class="Pars">) {</span></pre></div> 
+  </td> 
+</tr><tr id='section-12'> 
+  <td class=docs>
+    <p> If a language sets an <tt>ignore</tt> key, then the line matching it
+ is just removed from the output.</p>
+  </td> 
+  <td class=code> 
+    <div class='highlight'><pre class="code">      <span class="Keywords">if</span> <span class="Pars">(</span><span class="Keywords2">isset</span><span class="Pars">(</span><span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">ignore</span><span class="Pars">)</span> <span class="Logic">AND</span> <span class="Keywords2">preg_match</span><span class="Pars">(</span><span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">ignore</span><span class="Pars">,</span> <span class="Tag">$line</span><span class="Pars">)) {</span>
+        <span class="Keywords">continue</span><span class="Pars">;
+      }</span></pre></div> 
+  </td> 
+</tr><tr id='section-13'> 
+  <td class=docs>
+    <p> If we're currently in a comment block, check whether the line matches
+ the end of a comment block.</p>
+  </td> 
+  <td class=code> 
+    <div class='highlight'><pre class="code">      <span class="Keywords">if</span> <span class="Pars">(</span><span class="Tag">$in_comment_block</span><span class="Pars">) {</span>
+        <span class="Keywords">if</span> <span class="Pars">(</span><span class="Keywords2">isset</span><span class="Pars">(</span><span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">block_comment_end</span><span class="Pars">)</span> <span class="Logic">AND</span> <span class="Keywords2">preg_match</span><span class="Pars">(</span><span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">block_comment_end</span><span class="Pars">,</span> <span class="Tag">$line</span><span class="Pars">)) {</span>
+          <span class="Tag">$in_comment_block</span> <span class="Operators">=</span> <span class="Logic">false</span><span class="Pars">;
+        }</span>
+        <span class="Keywords">else</span> <span class="Pars">{</span>
+          <span class="Keywords">if</span> <span class="Pars">(</span><span class="Keywords2">isset</span><span class="Pars">(</span><span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">block_comment_mid</span><span class="Pars">)) {</span><span class="Tag">$docs</span><span class="Pars">[]</span> <span class="Operators">=</span> <span class="Keywords2">preg_replace</span><span class="Pars">(</span><span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">block_comment_mid</span><span class="Pars">,</span> <span class="SingleString">''</span><span class="Pars">,</span> <span class="Tag">$line</span><span class="Pars">);}</span>
+          <span class="Keywords">else</span> <span class="Pars">{</span> <span class="Tag">$docs</span><span class="Pars">[]</span> <span class="Operators">=</span> <span class="Tag">$line</span><span class="Pars">;}
+          
+        }
+      }</span></pre></div> 
+  </td> 
+</tr><tr id='section-14'> 
+  <td class=docs>
+    <p> Otherwise, check whether the line matches the beginning of a block, or
+ a single-line comment all on it's lonesome.  In either case, if there's
+ code, start a new section.</p>
+  </td> 
+  <td class=code> 
+    <div class='highlight'><pre class="code">      <span class="Keywords">else</span> <span class="Pars">{</span>
+        <span class="Keywords">if</span> <span class="Pars">(</span><span class="Keywords2">isset</span><span class="Pars">(</span><span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">block_comment_start</span><span class="Pars">)</span> <span class="Logic">AND</span> <span class="Keywords2">preg_match</span><span class="Pars">(</span><span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">block_comment_start</span><span class="Pars">,</span> <span class="Tag">$line</span><span class="Pars">)) {</span>
+          <span class="Tag">$in_comment_block</span> <span class="Operators">=</span> <span class="Logic">true</span><span class="Pars">;</span>
+          <span class="Keywords">if</span> <span class="Pars">(</span><span class="Operators">!</span><span class="Keywords2">empty</span><span class="Pars">(</span><span class="Tag">$code</span><span class="Pars">)) {</span>
+            <span class="Tag">$sections</span><span class="Pars">[]</span> <span class="Operators">=</span> <span class="Keywords2">array</span><span class="Pars">(</span><span class="Tag">$docs</span><span class="Pars">,</span> <span class="Tag">$code</span><span class="Pars">);</span>
+            <span class="Tag">$docs</span> <span class="Operators">=</span> <span class="Keywords2">array</span><span class="Pars">();</span>
+            <span class="Tag">$code</span> <span class="Operators">=</span> <span class="Keywords2">array</span><span class="Pars">();
+          }
+        }</span>
+        <span class="Keywords">else if</span> <span class="Pars">(</span><span class="Keywords2">isset</span><span class="Pars">(</span><span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">single_line_comment</span><span class="Pars">)</span> <span class="Logic">AND</span> <span class="Keywords2">preg_match</span><span class="Pars">(</span><span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">single_line_comment</span><span class="Pars">,</span> <span class="Tag">$line</span><span class="Pars">)) {</span>
+          <span class="Keywords">if</span> <span class="Pars">(</span><span class="Operators">!</span><span class="Keywords2">empty</span><span class="Pars">(</span><span class="Tag">$code</span><span class="Pars">)) {</span>
+            <span class="Tag">$sections</span><span class="Pars">[]</span> <span class="Operators">=</span> <span class="Keywords2">array</span><span class="Pars">(</span><span class="Tag">$docs</span><span class="Pars">,</span> <span class="Tag">$code</span><span class="Pars">);</span>
+            <span class="Tag">$docs</span> <span class="Operators">=</span> <span class="Keywords2">array</span><span class="Pars">();</span>
+            <span class="Tag">$code</span> <span class="Operators">=</span> <span class="Keywords2">array</span><span class="Pars">();
+          }</span>
+          <span class="Tag">$docs</span><span class="Pars">[]</span> <span class="Operators">=</span> <span class="Keywords2">preg_replace</span><span class="Pars">(</span><span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">single_line_comment</span><span class="Pars">,</span> <span class="SingleString">''</span><span class="Pars">,</span> <span class="Tag">$line</span><span class="Pars">);
+        }</span>
+        <span class="Keywords">else</span> <span class="Pars">{</span>
+          <span class="Tag">$code</span><span class="Pars">[]</span> <span class="Operators">=</span> <span class="Tag">$line</span><span class="Pars">;
+        }
+      }
+    }</span> <span class="Comment">// end foreach</span>
+    <span class="Keywords">if</span> <span class="Pars">( (</span><span class="Operators">!</span><span class="Keywords2">empty</span><span class="Pars">(</span><span class="Tag">$docs</span><span class="Pars">))</span> <span class="Logic">OR</span> <span class="Pars">(</span><span class="Operators">!</span><span class="Keywords2">empty</span><span class="Pars">(</span><span class="Tag">$code</span><span class="Pars">)) ) {</span>
+      <span class="Tag">$sections</span><span class="Pars">[]</span> <span class="Operators">=</span> <span class="Keywords2">array</span><span class="Pars">(</span><span class="Tag">$docs</span><span class="Pars">,</span> <span class="Tag">$code</span><span class="Pars">);
+    }</span>
+    <span class="Keywords">if</span> <span class="Pars">(</span><span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">markup_engine</span> <span class="Operators">==</span> <span class="SingleString">'markdown'</span><span class="Pars">) {</span>
+      <span class="Tag">$sections</span> <span class="Operators">=</span> <span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">normalize_leading_spaces</span><span class="Pars">(</span><span class="Tag">$sections</span><span class="Pars">);
+    }</span> 
+    <span class="Keywords">return</span> <span class="Tag">$sections</span><span class="Pars">;
+  }</span>
+
+  <span class="Keywords4">function</span> <span class="funcName">normalize_leading_spaces</span><span class="Pars">(</span><span class="Tag">$sections</span><span class="Pars">) {</span>
+    <span class="Tag">$sec</span> <span class="Operators">=</span> <span class="Keywords2">array</span><span class="Pars">();</span>
+    <span class="Keywords">foreach</span><span class="Pars">(</span><span class="Tag">$sections</span> <span class="Keywords">as</span> <span class="Tag">$section</span><span class="Pars">) {</span>
+      <span class="Keywords">if</span> <span class="Pars">( (</span><span class="Operators">!</span><span class="Keywords2">empty</span><span class="Pars">(</span><span class="Tag">$section</span><span class="Pars">))</span> <span class="Logic">AND</span> <span class="Pars">(</span><span class="Operators">!</span><span class="Keywords2">empty</span><span class="Pars">(</span><span class="Tag">$section</span><span class="Pars">[</span><span class="Number">0</span><span class="Pars">])) ) {</span>
+        <span class="Keywords">if</span> <span class="Pars">(</span><span class="Keywords2">preg_match</span><span class="Pars">(</span><span class="SingleString">'/^</span><span class="StringEsc">\s</span><span class="SingleString">+/'</span><span class="Pars">,</span> <span class="Tag">$section</span><span class="Pars">[</span><span class="Number">0</span><span class="Pars">][</span><span class="Number">0</span><span class="Pars">],</span> <span class="Tag">$matches</span><span class="Pars">)) {</span>
+          <span class="Tag">$fist_line_blanks</span> <span class="Operators">=</span> <span class="SingleString">'/^'</span><span class="Operators">.</span><span class="Tag">$matches</span><span class="Pars">[</span><span class="Number">0</span><span class="Pars">]</span><span class="Operators">.</span><span class="SingleString">'/'</span><span class="Pars">;</span>
+          <span class="Tag">$res</span> <span class="Operators">=</span> <span class="Keywords2">array</span><span class="Pars">();</span>
+          <span class="Keywords">foreach</span><span class="Pars">(</span><span class="Tag">$section</span> <span class="Keywords">as</span> <span class="Tag">$line</span><span class="Pars">) {</span> 
+            <span class="Tag">$res</span><span class="Pars">[]</span> <span class="Operators">=</span> <span class="Keywords2">preg_replace</span><span class="Pars">(</span><span class="Tag">$fist_line_blanks</span> <span class="Pars">,</span> <span class="SingleString">''</span><span class="Pars">,</span> <span class="Tag">$line</span><span class="Pars">);
+          }</span>
+          <span class="Tag">$truc</span> <span class="Operators">=</span> <span class="Tag">$res</span><span class="Pars">;
+        }     
+      }</span>
+      <span class="Keywords">else</span> <span class="Pars">{</span> <span class="Tag">$truc</span> <span class="Operators">=</span> <span class="Tag">$section</span><span class="Pars">;}</span>
+      <span class="Tag">$sec</span><span class="Pars">[]</span> <span class="Operators">=</span> <span class="Tag">$truc</span><span class="Pars">;
+    }</span>
+    <span class="Keywords">return</span> <span class="Tag">$sec</span><span class="Pars">;
+  }</span></pre></div> 
+  </td> 
+</tr><tr id='section-15'> 
+  <td class=docs>
+    <p> Get the contents of our given <tt>$filename</tt> template.
+ Then <em>replace</em> <strong>any</strong> placeholder like <tt>[[place_holder]]</tt> inside
+ At the moment, there is only one placeholder inside the templates: 
+ the <tt>[[filename]]</tt>.</p>
+  </td> 
+  <td class=code> 
+    <div class='highlight'><pre class="code">  <span class="Keywords4">function</span> <span class="funcName">get_tpl_contents</span><span class="Pars">(</span><span class="Tag">$filename</span><span class="Pars">)
+  {</span>
+    <span class="Tag">$output</span> <span class="Operators">=</span> <span class="Keywords2">file_get_contents</span><span class="Pars">(</span><span class="SingleString">'templates/'</span><span class="Operators">.</span><span class="Tag">$filename</span> <span class="Operators">.</span> <span class="SingleString">'.tpl'</span><span class="Pars">);</span>
+    <span class="Tag">$regex</span> <span class="Operators">=</span> <span class="SingleString">'/</span><span class="StringEsc">\[\[</span><span class="SingleString">([a-zA-Z0-9_]+)</span><span class="StringEsc">\]\]</span><span class="SingleString">/'</span><span class="Pars">;</span>
+    <span class="Keywords">while</span><span class="Pars">(</span><span class="Keywords2">preg_match</span><span class="Pars">(</span><span class="Tag">$regex</span><span class="Pars">,</span> <span class="Tag">$output</span><span class="Pars">)) {</span>
+      <span class="Tag">$output</span> <span class="Operators">=</span> <span class="Keywords2">preg_replace_callback</span><span class="Pars">(</span>
+        <span class="Tag">$regex</span><span class="Pars">,</span> 
+        <span class="Keywords2">array</span><span class="Pars">(</span><span class="Tag">$this</span><span class="Pars">,</span> <span class="DoubleString">"cb_replace"</span><span class="Pars">)
+        ,</span><span class="Tag">$output</span><span class="Pars">);
+    }</span>
+    <span class="Keywords">return</span> <span class="Tag">$output</span><span class="Pars">;
+  }</span></pre></div> 
+  </td> 
+</tr><tr id='section-16'> 
+  <td class=docs>
+    <p> Callback method for <tt>preg_replace_callback</tt> used
+ inside the <tt>get_file_contents</tt> method. </p>
+  </td> 
+  <td class=code> 
+    <div class='highlight'><pre class="code">  <span class="Keywords4">function</span> <span class="funcName">cb_replace</span><span class="Pars">(</span><span class="Tag">$matches</span><span class="Pars">) {</span>
+    <span class="Tag">$dico</span> <span class="Operators">=</span> <span class="Keywords2">array</span><span class="Pars">(</span>
+    <span class="SingleString">'filename'</span> <span class="Operators">=&gt;</span> <span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">filename</span>
+    <span class="Pars">);</span>
+    <span class="Keywords">return</span> <span class="Tag">$dico</span><span class="Pars">[</span><span class="Tag">$matches</span><span class="Pars">[</span><span class="Number">1</span><span class="Pars">]];
+  }</span></pre></div> 
+  </td> 
+</tr><tr id='section-17'> 
+  <td class=docs>
+    <p> Take the list of paired <strong>sections</strong> two-tuples and split into two
+ separate lists: one holding the comments with leaders removed and
+ one with the code blocks.</p>
+  </td> 
+  <td class=code> 
+    <div class='highlight'><pre class="code">  <span class="Keywords4">function</span> <span class="funcName">split</span><span class="Pars">(</span><span class="Tag">$sections</span><span class="Pars">) {</span>
+    <span class="Tag">$docs_blocks</span> <span class="Operators">=</span> <span class="Keywords2">array</span><span class="Pars">();</span>
+    <span class="Tag">$code_blocks</span> <span class="Operators">=</span> <span class="Keywords2">array</span><span class="Pars">();</span>
+    <span class="Keywords">foreach</span><span class="Pars">(</span><span class="Tag">$sections</span> <span class="Keywords">as</span> <span class="Tag">$sec</span><span class="Pars">) {</span>
+      <span class="Tag">$docs</span> <span class="Operators">=</span> <span class="Keywords2">implode</span><span class="Pars">(</span><span class="DoubleString">"</span><span class="StringEsc">\n</span><span class="DoubleString">"</span><span class="Pars">,</span><span class="Tag">$sec</span><span class="Pars">[</span><span class="Number">0</span><span class="Pars">]);</span>
+      <span class="Tag">$code</span> <span class="Operators">=</span> <span class="Keywords2">implode</span><span class="Pars">(</span><span class="DoubleString">"</span><span class="StringEsc">\n</span><span class="DoubleString">"</span><span class="Pars">,</span><span class="Tag">$sec</span><span class="Pars">[</span><span class="Number">1</span><span class="Pars">]);</span>
+      <span class="Tag">$docs_blocks</span><span class="Pars">[]</span> <span class="Operators">=</span> <span class="Tag">$docs</span><span class="Pars">;</span>
+      <span class="Tag">$code_blocks</span><span class="Pars">[]</span> <span class="Operators">=</span> <span class="Tag">$code</span><span class="Pars">;
+    }</span>
+    <span class="Keywords">return</span> <span class="Keywords2">array</span><span class="Pars">(</span><span class="Tag">$docs_blocks</span><span class="Pars">,</span> <span class="Tag">$code_blocks</span><span class="Pars">);
+  }</span></pre></div> 
+  </td> 
+</tr><tr id='section-18'> 
+  <td class=docs>
+    <p> The main method</p>
+  </td> 
+  <td class=code> 
+    <div class='highlight'><pre class="code">  <span class="Keywords4">function</span> <span class="funcName">build_doc</span><span class="Pars">()
+  {</span></pre></div> 
+  </td> 
+</tr><tr id='section-19'> 
+  <td class=docs>
+    <p> Separate docs &amp; source</p>
+  </td> 
+  <td class=code> 
+    <div class='highlight'><pre class="code">    <span class="Tag">$res</span> <span class="Operators">=</span> <span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">split</span><span class="Pars">(</span><span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">parse</span><span class="Pars">());</span>
+    <span class="Tag">$db</span>  <span class="Operators">=</span> <span class="Tag">$res</span><span class="Pars">[</span><span class="Number">0</span><span class="Pars">];</span> <span class="Comment">// docs blocks</span>
+    <span class="Tag">$cb</span>  <span class="Operators">=</span> <span class="Tag">$res</span><span class="Pars">[</span><span class="Number">1</span><span class="Pars">];</span> <span class="Comment">// code blocks</span></pre></div> 
+  </td> 
+</tr><tr id='section-20'> 
+  <td class=docs>
+    <p> Computes the lenght</p>
+  </td> 
+  <td class=code> 
+    <div class='highlight'><pre class="code">    <span class="Tag">$nb</span> <span class="Operators">=</span> <span class="Keywords2">max</span><span class="Pars">(</span><span class="Keywords2">count</span><span class="Pars">(</span><span class="Tag">$db</span><span class="Pars">),</span> <span class="Keywords2">count</span><span class="Pars">(</span><span class="Tag">$cb</span><span class="Pars">));</span></pre></div> 
+  </td> 
+</tr><tr id='section-21'> 
+  <td class=docs>
+    <p> Our output will contain sections</p>
+  </td> 
+  <td class=code> 
+    <div class='highlight'><pre class="code">    <span class="Tag">$out</span> <span class="Operators">=</span> <span class="Keywords2">array</span><span class="Pars">();</span></pre></div> 
+  </td> 
+</tr><tr id='section-22'> 
+  <td class=docs>
+    <p> The result is starting here: we place the HTML header </p>
+  </td> 
+  <td class=code> 
+    <div class='highlight'><pre class="code">    <span class="Tag">$result</span> <span class="Operators">=</span> <span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">get_tpl_contents</span><span class="Pars">(</span><span class="SingleString">'head'</span><span class="Pars">);</span></pre></div> 
+  </td> 
+</tr><tr id='section-23'> 
+  <td class=docs>
+    <p> Iterate over all found sections</p>
+  </td> 
+  <td class=code> 
+    <div class='highlight'><pre class="code">    <span class="Keywords">for</span><span class="Pars">(</span><span class="Tag">$i</span><span class="Operators">=</span><span class="Number">0</span><span class="Pars">;</span><span class="Tag">$i</span> <span class="Operators">&lt;</span> <span class="Tag">$nb</span><span class="Pars">;</span> <span class="Tag">$i</span><span class="Operators">++</span><span class="Pars">) {</span>
+      <span class="Tag">$source</span> <span class="Operators">=</span> <span class="Tag">$db</span><span class="Pars">[</span><span class="Tag">$i</span><span class="Pars">];</span></pre></div> 
+  </td> 
+</tr><tr id='section-24'> 
+  <td class=docs>
+    <p>echo &quot;'$source'\n&quot;;
+ Process the docs with <strong>Creole</strong> markup</p>
+  </td> 
+  <td class=code> 
+    <div class='highlight'><pre class="code">      <span class="Keywords">if</span> <span class="Pars">(</span><span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">markup_engine</span> <span class="Operators">==</span> <span class="SingleString">'creole'</span><span class="Pars">) {</span>
+        <span class="Tag">$cr</span> <span class="Operators">=</span> <span class="Special">new</span> <span class="className">creole</span><span class="Pars">();</span>
+        <span class="Tag">$out</span><span class="Pars">[</span><span class="SingleString">'doc'</span><span class="Pars">][</span><span class="Tag">$i</span><span class="Pars">]</span> <span class="Operators">=</span> <span class="Tag">$cr</span><span class="Operators">-&gt;</span><span class="funcName">parse</span><span class="Pars">(</span><span class="Tag">$source</span><span class="Pars">);     
+      }</span>
+      <span class="Keywords">else</span> <span class="Pars">{</span> <span class="Comment">// We use Markdown</span>
+        <span class="Tag">$out</span><span class="Pars">[</span><span class="SingleString">'doc'</span><span class="Pars">][</span><span class="Tag">$i</span><span class="Pars">]</span> <span class="Operators">=</span> Markdown<span class="Pars">(</span><span class="Tag">$source</span><span class="Pars">);        
+      }</span></pre></div> 
+  </td> 
+</tr><tr id='section-25'> 
+  <td class=docs>
+    <p> Process the highlighting of the source code with <strong>Prism</strong></p>
+  </td> 
+  <td class=code> 
+    <div class='highlight'><pre class="code">      <span class="Tag">$out</span><span class="Pars">[</span><span class="SingleString">'src'</span><span class="Pars">][</span><span class="Tag">$i</span><span class="Pars">]</span> <span class="Operators">=</span> <span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">hil</span><span class="Operators">-&gt;</span><span class="funcName">from_string</span><span class="Pars">(</span><span class="Tag">$cb</span><span class="Pars">[</span><span class="Tag">$i</span><span class="Pars">]);</span></pre></div> 
+  </td> 
+</tr><tr id='section-26'> 
+  <td class=docs>
+    <p> Now build each section</p>
+  </td> 
+  <td class=code> 
+    <div class='highlight'><pre class="code">      <span class="Tag">$doc</span> <span class="Operators">=</span> <span class="Tag">$out</span><span class="Pars">[</span><span class="SingleString">'doc'</span><span class="Pars">][</span><span class="Tag">$i</span><span class="Pars">];</span>
+      <span class="Tag">$src</span> <span class="Operators">=</span> <span class="Tag">$out</span><span class="Pars">[</span><span class="SingleString">'src'</span><span class="Pars">][</span><span class="Tag">$i</span><span class="Pars">];</span></pre></div> 
+  </td> 
+</tr><tr id='section-27'> 
+  <td class=docs>
+    <p> Using a Heredoc string with variables inside
+ to build each section inside an HTML table</p>
+  </td> 
+  <td class=code> 
+    <div class='highlight'><pre class="code">      <span class="Tag">$section</span> <span class="Operators">=&lt;&lt;&lt;EOF</span><span class="SingleString">
+&lt;tr id='section-</span><span class="Tag">$i</span><span class="SingleString">'&gt; 
+  &lt;td class=docs&gt;
+    </span><span class="Tag">$doc</span><span class="SingleString">
+  &lt;/td&gt; 
+  &lt;td class=code&gt; 
+    &lt;div class='highlight'&gt;&lt;pre class="code"&gt;</span><span class="Tag">$src</span><span class="SingleString">&lt;/pre&gt;&lt;/div&gt; 
+  &lt;/td&gt; 
+&lt;/tr&gt;
+</span><span class="Operators">EOF;</span>
+
+      <span class="Tag">$result</span> <span class="Operators">.=</span> <span class="Tag">$section</span><span class="Pars">;
+    }</span> <span class="Comment">// end for</span>
+    <span class="Tag">$result</span> <span class="Operators">.=</span> <span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">get_tpl_contents</span><span class="Pars">(</span><span class="SingleString">'foot'</span><span class="Pars">);</span>
+    <span class="Keywords">return</span> <span class="Tag">$result</span><span class="Pars">;
+  }</span></pre></div> 
+  </td> 
+</tr><tr id='section-28'> 
+  <td class=docs>
+    <p> Save the doc to HTML given a <tt>$output_name</tt> filename
+ <strong>Note:</strong> the <tt>.html</tt> extension is automatically added.</p>
+  </td> 
+  <td class=code> 
+    <div class='highlight'><pre class="code">  <span class="Keywords4">function</span> <span class="funcName">save_doc</span><span class="Pars">(</span><span class="Tag">$output_name</span><span class="Pars">)
+  {</span>
+    <span class="Tag">$res</span> <span class="Operators">=</span> <span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">build_doc</span><span class="Pars">(</span><span class="Tag">$this</span><span class="Operators">-&gt;</span><span class="funcName">source</span><span class="Pars">);</span>
+    <span class="Tag">$out</span> <span class="Operators">=</span> <span class="Tag">$output_name</span> <span class="Operators">.</span> <span class="SingleString">'.html'</span><span class="Pars">;</span>
+    <span class="Tag">$fp</span> <span class="Operators">=</span> <span class="Keywords2">fopen</span><span class="Pars">(</span><span class="Tag">$out</span><span class="Pars">,</span> <span class="SingleString">'w'</span><span class="Pars">);</span>
+    <span class="Keywords2">fwrite</span><span class="Pars">(</span><span class="Tag">$fp</span><span class="Pars">,</span><span class="Tag">$res</span><span class="Pars">);</span>
+    <span class="Keywords2">fclose</span><span class="Pars">(</span><span class="Tag">$fp</span><span class="Pars">);</span>
+    <span class="Keywords">echo</span> <span class="DoubleString">"Your file '$out' has been saved.</span><span class="StringEsc">\n</span><span class="DoubleString">  Thanks for using Pocco.</span><span class="StringEsc">\n</span><span class="DoubleString">"</span><span class="Pars">;
+  }
+
+}</span></pre></div> 
+  </td> 
+</tr>    </table> 
+</div> 
+</body>

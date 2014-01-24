@@ -1,0 +1,141 @@
+pre.code {
+background-color: #FFFFFF;
+color: #010101;
+}
+
+.Root{
+color: #010101;
+}
+
+.Shebang{
+color: #AFC4DB;
+font-style: italic;
+}
+
+.BlockComment{
+color: #898989;
+font-style: italic;
+}
+
+.Comment {
+color: #898989;
+font-style: italic;
+}
+
+.Logic {
+color: #ad7fa8;
+/* font-weight: bold; */
+}
+
+.className {
+color: #BC4D00;
+}
+
+.funcName {
+color: #0067C2;
+}
+
+.Keywords {
+color: #016692;
+}
+
+.Keywords2 {
+color: #A00294;
+}
+
+.Keywords3 {
+color: #CF19CB;
+font-style: italic;
+}
+
+.Keywords4 {
+color: #473E8F;
+}
+
+.Keywords5 {
+color: #DF8A45;
+}
+
+.Special{
+color: #436B3D; 
+}
+
+.Types {
+color: #333366;
+font-style: italic;
+}
+
+.Entities {
+color: #A15001;
+background-color: #FFFFFF;
+}
+
+.Entities1 {
+color: #A15001;
+background-color: #FFFFFF;
+}
+
+.Entities2 {
+color: #877611;
+}
+
+.Entities3 {
+color: #646409;
+}
+
+.Pars {
+color: #667587;
+}
+
+.Operators{
+color: #CF7D34;
+}
+
+pre .StringEsc {
+color: #961313;
+background-color: #D8C9C9;
+}
+
+
+.String, .SingleString {
+color: #009F78;
+background-color: #FFFFFF;
+}
+
+.DoubleString {
+color: #009F78;
+background-color: #FFFFFF;
+}
+
+.Number {
+color: #8C008A; 
+}
+
+.Integer {
+color: #49A5FF;
+}
+
+.Tag {
+color: #49A5FF; 
+}
+
+.Name {
+color: #49A5FF; 
+}
+
+.Regex {
+color: #29AFDF;
+background-color: #2F1D1D;
+}
+
+.Dico {
+color: #61FF2F;
+background-color: #183F0C;
+}
+
+.Url, .Url a  {
+color: #628795;
+background-color: #FFFFFF;
+text-decoration: underline;
+font-style: italic;
+}

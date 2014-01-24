@@ -1,0 +1,281 @@
+/* Getting the new tags to behave */
+article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, meter, nav, output, progress, section, source, video{ display: block; }
+mark, rp, rt, ruby, summary, time{ display: inline }
+
+ul { clear: left; } /* Fixing Chrome with lists : see http://stackoverflow.com/questions/2078801/google-chrome-and-ie7-unordered-list-problem */
+
+/* FONTS ======================================================== */
+@font-face {
+  font-family: 'LapinRegular';
+  src: url('../fonts/eurof55.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Lobster1.1Regular';
+  src: url('../fonts/Lobster_1.1_-webfont.eot');
+  src: local('☺'), url('../fonts/Lobster_1.1_-webfont.woff') format('woff'), url('../fonts/Lobster_1.1_-webfont.ttf') format('truetype'), url('../fonts/Lobster_1.1_-webfont.svg#webfont30G9S4nm') format('svg');
+  font-weight: normal;
+  font-style: normal; }
+    
+@font-face {
+  font-family: 'RalewayThin';
+  src: url('../fonts/raleway_thin-webfont.eot');
+  src: local('☺'), url('../fonts/raleway_thin-webfont.woff') format('woff'), url('../fonts/raleway_thin-webfont.ttf') format('truetype'), url('../fonts/raleway_thin-webfont.svg#webfont') format('svg');
+  font-weight: normal;
+  font-style: normal; }
+
+/* Site-wide properties ======================================================== */
+
+body {
+  font-family: 'LapinRegular', serif; /* 'Droid Serif', serif; */
+  font-family: 'Yanone Kaffeesatz';
+  font-size: 18px;
+  font-style: bold;
+  font-weight: 400;
+  text-shadow: none;
+  text-decoration: none;
+  text-transform: none;
+  letter-spacing: 0em;
+  word-spacing: 0em;
+  line-height: 1em;
+}
+
+/* Fibonacci based heading scale ratio */
+h1{ font-size: 4.4em; font-weight: normal; }
+h2{ font-size: 2.8em; font-weight: bold; }
+h3{ font-size: 1.6em; font-weight: bold; }
+h4{ font-size: 1.2em; font-weight: bold; }
+
+a {text-decoration: none;
+  color: #4D79FF;
+}
+
+/* Reusable classes ============================================================ */
+
+/* Left & Right alignment */
+.left{ float: left; }
+.right{ float: right; }
+
+/* The inside class provides consistent padding. To be used often! */
+.inside {
+  font-family: 'Yanone Kaffeesatz'; 
+  /* font-family: 'LapinRegular', serif; /* 'Droid Serif', serif; */
+  padding: 20px;
+}
+.inside p { font-size: 100%; }
+.inside table { font-size: 100%; } 
+
+/* The fraction classes are useful for column lists */
+.half, .third, .quarter, .fifth, .sixth{ width: 100%; }
+.half li, .third li, .quarter li, .fifth li, .sixth li{ float: left; }
+.half li{ padding-right: 5%; width: 45% }
+.third li{  padding-right: 5%; width: 28.3% }
+.quarter li{  padding-right: 5%; width: 20% }
+.fifth li{  padding-right: 5%; width: 15% }
+
+/* For when a <br /> just ain't enough */
+.separator{
+    clear: both;
+    float: left;
+    height: 1px;
+    width: 100%; }
+
+/* Basic Structure ============================================================= */
+#wrap{
+    min-height: 600px;
+    margin: 0 auto;
+    position: relative;
+    width: 960px; }
+
+    /* Header */
+    header{
+        float: left;
+        width: 100%; }
+    
+    /* Content */
+    article{
+        float: left;
+        width: 66.7%; }
+    
+    /* Sidebar */
+    aside{
+        float: left;
+        width: 33.3%;
+       }
+        
+    /* Footer */
+    footer{
+        float: left;
+        width: 100%; }
+    
+/* Project specifics =========================================================== */
+
+/* The H1 declarations - for @font-face presentational purposes only */
+h1 { font: 88px 'Allan', Arial, sans-serif; }
+/*h1 span{ font: 88px RalewayThin, Arial, sans-serif; letter-spacing: -4px }*/
+a h1 { color: #000000; }
+a h1 span { color: #000000; }
+/* The H3 declarations - for @font-face presentational purposes only */
+h3 span{ color: #BF0000; font-size: 1.3em ; }
+a span{ color: #BF0000; font-size: 1em ; }
+/* p { font: 1.0em Arial, sans-serif; letter-spacing: 0px ; } */
+
+/* Tableaux */
+table {  /* Les bordures du tableau seront collées (plus joli) */
+  margin : 10px auto auto auto; 
+  text-align: center; 
+
+  border-collapse: collapse; }
+td {/* Toutes les cellules des tableaux auront une bordure de 1px */
+  border: 1px solid black;}
+tr:nth-child(odd) { background-color: #BFBFBF; }
+th {border: 1px solid black;font-weight: bold; background-color: #3F61FF;}
+
+/*------------------------------
+=INSIDE
+-------------------------------*/
+
+.inside h3  {
+  color: #000;
+  font-size: 120%;
+  margin: 10px;
+}
+
+.inside ul {
+    padding: 10px;
+    margin: 0 0 10px 10px;
+    list-style: square;
+    color: #565656;
+}
+.inside ul li a {
+  margin: 0 0 5px 5px;
+}
+
+.inside p {
+  margin: 10px;
+  line-height: 20px;
+}
+
+/*------------------------------
+=FOOTER
+------------------------------*/
+footer {
+  left: 0;
+  width: 100%;
+  background: #222;
+}
+
+footer div {
+  display: table;
+  margin: 0 auto;
+  padding: 44px 0;
+  width: 940px;
+  color: #777;
+}
+
+footer div section {
+  display: table-cell;
+  width: 300px;
+}
+
+footer div #about, footer div #blogroll,footer div #register, footer div #logiciels {
+  padding-right: 10px;
+}
+
+footer h3 {
+color: #FFF;
+font-size: 100%;
+}
+
+footer a:hover {
+color: #FFF;
+text-decoration: none;
+}
+
+footer ul {
+margin: 0 0 0 20px;
+list-style: square;
+color: #565656;
+}
+
+footer ul li a {
+  display: block;
+}
+
+/* About message inside the footer */
+#explain {
+  font-size:70%;}
+  
+/*------------------------------
+=OTHERS
+------------------------------*/
+/* Login Form */
+.login {
+  text-align: center;
+}
+
+.strok { text-decoration: underline;}
+
+aside ul {
+    padding: 0px;
+    /* margin: 0 0 5px 5px; */
+    list-style: square;
+    color: #565656;
+}
+aside ul li {
+  margin: 0 0 5px 5px;
+}
+
+a#admin {
+  color: #99CC00;
+}
+
+#lang a {
+  color: #99CC00;
+}
+
+form button {
+background: #384313;
+border: none;
+-moz-border-radius: 20px;
+-webkit-border-radius: 20px;
+-khtml-border-radius: 20px;
+border-radius: 20px;
+color: #ffffff;
+display: block;
+font: 18px Georgia, "Times New Roman", Times, serif;
+letter-spacing: 1px;
+margin: auto;
+padding: 7px 25px;
+text-shadow: 0 1px 1px #000000;
+}
+
+form textarea {
+background: #C8C9B9;
+border: none;
+-moz-border-radius: 20px;
+-webkit-border-radius: 20px;
+-khtml-border-radius: 20px;
+border-radius: 5px;
+color: #000000;
+display: block;
+font-family: "Consolas","DejaVu Sans Mono","Monaco";
+font-size: 70%;
+padding: 10px;
+}
+
+pre.code {
+font-family: "DejaVu Sans Mono","Droid Sans Mono","Consolas","DejaVu Sans Mono","Monaco";
+font-size: 60%;
+padding:0.0em 0em 0em 0.5em;
+margin: 0px;
+border: 1px solid #D98719;
+/* opacity:0.9; */
+background-color: #302D26;
+color: #FCFFE0;
+overflow-x: auto;
+overflow-y: hidden;
+line-height: 125%;
+text-align: left;
+}

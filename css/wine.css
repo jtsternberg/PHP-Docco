@@ -1,0 +1,109 @@
+/* VARIABLES */
+/* #40405F; */
+/* RULES */
+pre.code {
+  background-color: #92725f;
+  color: #bc9eab; }
+
+.BlockComment {
+  color: #5e4a36;
+  font-style: italic; }
+
+.className {
+  color: #6c9ccd; }
+
+.Comment {
+  color: #4d2828;
+  font-style: italic; }
+
+.Dico {
+  color: #ef8a11;
+  background-color: #443B18; }
+
+.DoubleString {
+  color: #3fb8c9; }
+
+.Entities {
+  background-color: #3F342B;
+  background-color: #4E30BA;
+  color: #3FCDFF; }
+
+.Entities1 {
+  color: #D4E827; }
+
+.Entities2 {
+  color: #ef8811;
+  /* font-weight: bold; */ }
+
+.Entities3 {
+  color: #8FCDFF; }
+
+.funcName {
+  color: #870535; }
+
+.Integer {
+  color: #49A5FF; }
+
+.Keywords, .Keywords1 {
+  color: #9b1406; }
+
+.Keywords2 {
+  color: #efa911; }
+
+.Keywords3 {
+  color: #6CD62F; }
+
+.Keywords4 {
+  color: #EF5D32; }
+
+.Keywords5 {
+  color: #EF5D32; }
+
+.Logic {
+  color: #ad7fa8;
+  /* font-weight: bold; */ }
+
+.Name {
+  color: #EFAC32; }
+
+.Number {
+  color: #d40f4e; }
+
+.Shebang {
+  color: #a64100;
+  font-style: italic; }
+
+.Special {
+  color: #5c2978; }
+
+.Operators {
+  color: black; }
+
+.Pars {
+  color: #aced48; }
+
+.Regex {
+  color: #EFCB43;
+  background-color: #2F1D1D; }
+
+.Root {
+  color: #bc9eab; }
+
+.StringEsc {
+  color: #D9D762;
+  background-color: #4E30BA; }
+
+.String, .SingleString {
+  color: #206077; }
+
+.Tag {
+  color: #ef7811; }
+
+.Types {
+  color: #91ea47; }
+
+.Url, .Url .a {
+  color: #E8C117;
+  background-color: #28230D;
+  text-decoration: underline;
+  font-style: italic; }
