@@ -1,6 +1,6 @@
 # PHP-Docco
 
-Original Pocco is found here: [http://fitzgen.github.io/pocco/](http://fitzgen.github.io/pocco/).
+Original Pocco is found here: [http://kib2.free.fr/Pocco/Pocco.html](http://kib2.free.fr/Pocco/Pocco.html).
 
 Pocco is a PHP port of [Docco](http://jashkenas.github.io/docco/) tweaked to work better with PHP.
 
